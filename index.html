@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff4747" />
+  <meta name="description" content="OPC3赛题A AI愿望储蓄罐，可安装PWA App原型。" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="愿望储蓄罐" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>AI愿望储蓄罐</title>
+</head>
+<body>
+  <main id="appShell" class="phone-shell" role="application" aria-label="AI愿望储蓄罐App">
+    <div class="status-bar" aria-hidden="true">
+      <span>9:41</span>
+      <span>5G 100%</span>
+    </div>
+
+    <header class="topbar">
+      <div>
+        <strong>AI愿望储蓄罐</strong>
+        <span>AliExpress Wish Saver</span>
+      </div>
+      <button id="installBtn" class="install-btn" type="button" hidden>安装</button>
+    </header>
+
+    <section id="view-home" class="view active" data-view="home">
+      <div class="hero-card">
+        <span class="ai-badge">AI Agent 正在优化今日计划</span>
+        <h1>耳机愿望<br>今日可推进</h1>
+        <p id="heroCopy">完成两个轻任务即可开启惊喜宝箱，奖励会自动存入心愿罐。</p>
+      </div>
+
+      <article class="wish-card">
+        <div class="product-visual" aria-hidden="true"></div>
+        <div>
+          <div class="card-kicker">当前愿望</div>
+          <h2>Wireless Earbuds</h2>
+          <p>AI预测：你对免邮券和 $8 抵扣最敏感</p>
+          <div class="progress-track" aria-label="愿望储蓄进度">
+            <div id="progressBar" class="progress-fill"></div>
+          </div>
+          <p><b id="progressText">68%</b> 已储蓄 · 已抵扣 <b id="discountInline">$7</b></p>
+        </div>
+      </article>
+
+      <div class="metric-grid" aria-label="核心状态">
+        <div class="metric-card"><strong id="coinsText">128</strong><span>金币</span></div>
+        <div class="metric-card"><strong id="streakText">6天</strong><span>连续</span></div>
+        <div class="metric-card"><strong id="discountText">$7</strong><span>可抵扣</span></div>
+      </div>
+
+      <div class="section-head">
+        <h2>AI下一步建议</h2>
+        <button class="text-btn" type="button" data-open-rules>规则</button>
+      </div>
+      <div class="ai-note">
+        你近 3 天常在晚间打开 App，因此今天只安排 90 秒任务，避免打扰和放弃。
+      </div>
+
+      <div id="homeTasks" class="task-list"></div>
+    </section>
+
+    <section id="view-tasks" class="view" data-view="tasks">
+      <div class="page-title">
+        <h1>今日任务链</h1>
+        <p>沉没成本不是强迫清零，而是让用户看见投入，同时保留补救通道。</p>
+      </div>
+      <div class="rescue-banner">
+        <strong>断签保护</strong>
+        <span>若今日未完成，进度保留 70%，可用补救任务恢复。</span>
+      </div>
+      <div id="taskList" class="task-list"></div>
+      <article class="logic-card">
+        <h2>任务生成逻辑</h2>
+        <p>Mission Agent 根据用户活跃度、可完成时间、疲劳分和购买意图生成任务，Reward Budget Agent 再校验奖励成本。</p>
+      </article>
+    </section>
+
+    <section id="view-rewards" class="view" data-view="rewards">
+      <div class="page-title">
+        <h1>奖励中心</h1>
+        <p>随机奖励负责期待感，但概率、保底和预算必须透明。</p>
+      </div>
+      <div class="reward-grid">
+        <article class="reward-card">
+          <div class="reward-icon">🎁</div>
+          <h2>惊喜宝箱</h2>
+          <p>完成前两个任务后解锁，可能获得金币、券碎片或加速卡。</p>
+          <button id="openChestBtn" type="button">开启宝箱</button>
+        </article>
+        <article class="reward-card">
+          <div class="reward-icon">✨</div>
+          <h2>愿望扭蛋</h2>
+          <p>10金币一次，连续未中时高价值奖励概率逐步提升。</p>
+          <button id="drawBtn" type="button">抽一次</button>
+        </article>
+      </div>
+
+      <article class="coupon-card">
+        <div>
+          <span>耳机专属券</span>
+          <strong>$8 OFF</strong>
+          <p>满 $49 可用，兑换后自动应用到购物车。</p>
+        </div>
+        <button id="redeemBtn" type="button">兑换</button>
+      </article>
+
+      <article class="logic-card">
+        <h2>Reward Budget Agent</h2>
+        <p>奖励期望值 EV = Σ(奖品面额 × 概率 × 核销率)。普通宝箱和扭蛋都受日预算、券库存与用户LTV约束。</p>
+      </article>
+    </section>
+
+    <section id="view-cart" class="view" data-view="cart">
+      <div class="page-title">
+        <h1>购物车抵扣</h1>
+        <p>游戏行为必须回流到交易链路，这才是企业会认可的留存系统。</p>
+      </div>
+      <article class="cart-card">
+        <div class="cart-product">
+          <div class="product-visual small" aria-hidden="true"></div>
+          <div>
+            <h2>Wireless Earbuds</h2>
+            <p>Noise-Canceling · Global Shipping</p>
+          </div>
+        </div>
+        <div class="cart-row"><span>商品金额</span><strong>$59.99</strong></div>
+        <div class="cart-row"><span>愿望储蓄抵扣</span><strong id="cartDiscount">-$7.00</strong></div>
+        <div class="cart-row"><span>免邮权益</span><strong>-$3.00</strong></div>
+        <div class="cart-row total"><span>预计支付</span><strong id="payText">$49.99</strong></div>
+        <button id="checkoutBtn" class="wide green" type="button">确认下单</button>
+      </article>
+
+      <article class="logic-card">
+        <h2>转化闭环</h2>
+        <p>用户通过任务和随机奖励积累的权益会落在心愿商品、购物车、优惠券与会员权益上，避免“玩完就走”。</p>
+      </article>
+    </section>
+
+    <section id="view-growth" class="view" data-view="growth">
+      <div class="page-title">
+        <h1>增长看板</h1>
+        <p>用于向评委说明：这个 App 可以被实验、被度量、被优化。</p>
+      </div>
+      <div class="growth-grid">
+        <div class="growth-card"><span>D7留存</span><strong>+8.6%</strong><small>AI任务组 vs 固定任务组</small></div>
+        <div class="growth-card"><span>任务完成率</span><strong>+14%</strong><small>个性化难度调节</small></div>
+        <div class="growth-card"><span>补贴ROI</span><strong>+11%</strong><small>奖励预算Agent控制</small></div>
+        <div class="growth-card"><span>券核销率</span><strong>+9.3%</strong><small>心愿商品绑定</small></div>
+      </div>
+      <article class="logic-card">
+        <h2>A/B实验建议</h2>
+        <ul>
+          <li>固定奖励 vs 随机宝箱 + 保底机制</li>
+          <li>统一任务 vs AI个性化任务</li>
+          <li>断签清零 vs 保留70% + 补救任务</li>
+          <li>普通金币中心 vs 心愿商品储蓄罐</li>
+        </ul>
+      </article>
+      <button id="resetBtn" class="wide secondary" type="button">重置演示数据</button>
+    </section>
+
+    <nav class="tabbar" aria-label="主导航">
+      <button class="tab active" type="button" data-target="home"><span>🏠</span><b>首页</b></button>
+      <button class="tab" type="button" data-target="tasks"><span>✅</span><b>任务</b></button>
+      <button class="tab" type="button" data-target="rewards"><span>🎁</span><b>奖励</b></button>
+      <button class="tab" type="button" data-target="cart"><span>🛒</span><b>购物车</b></button>
+      <button class="tab" type="button" data-target="growth"><span>📈</span><b>增长</b></button>
+    </nav>
+
+    <dialog id="rulesDialog">
+      <h2>奖励与风控规则</h2>
+      <p>1. 宝箱和扭蛋显示概率与保底逻辑，避免赌博化表达。</p>
+      <p>2. 断签不清零，保留 70% 进度，并提供补救任务。</p>
+      <p>3. 单用户奖励成本由 Reward Budget Agent 控制。</p>
+      <button class="wide" type="button" data-close-rules>知道了</button>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="./app.js" defer></script>
+</body>
+</html>

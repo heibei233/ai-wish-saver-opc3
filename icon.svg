@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AI愿望储蓄罐图标">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="70" x2="430" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff4747"/>
+      <stop offset="1" stop-color="#ffb020"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="366" cy="122" r="72" fill="#fff" opacity=".2"/>
+  <path d="M138 245c0-72 52-127 118-127s118 55 118 127v86c0 37-30 67-67 67H205c-37 0-67-30-67-67v-86z" fill="#fff"/>
+  <path d="M183 247c0-45 31-80 73-80s73 35 73 80" fill="none" stroke="#14213d" stroke-width="32" stroke-linecap="round"/>
+  <rect x="161" y="275" width="190" height="64" rx="32" fill="#ff4747"/>
+  <text x="256" y="426" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="800" fill="#14213d">AI</text>
+</svg>

@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ai-wish-saver-opc3
+    runtime: static
+    buildCommand: echo "Static site ready"
+    staticPublishPath: .
