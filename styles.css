@@ -499,6 +499,46 @@ button.green {
   font-size: 11px;
 }
 
+.week-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin: 2px 0 13px;
+}
+
+.week-strip span {
+  min-height: 46px;
+  padding: 7px 2px;
+  border: 1px solid #edf1f5;
+  border-radius: 12px;
+  color: #98a2b3;
+  background: #f8fafc;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1.05;
+}
+
+.week-strip b {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.week-strip .active {
+  color: #fff;
+  border-color: var(--red);
+  background: linear-gradient(135deg, var(--red), #ff8a50);
+  box-shadow: 0 10px 18px rgba(255, 77, 61, 0.18);
+}
+
+.week-strip .boom {
+  color: var(--red-dark);
+  border-color: #ffd0c7;
+  background: #fff1ee;
+}
+
 .progress-block {
   margin-top: 2px;
 }
@@ -1028,6 +1068,45 @@ button.green {
   gap: 8px;
   margin-top: 12px;
   padding: 14px;
+}
+
+.resource-matrix {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.resource-row {
+  display: grid;
+  grid-template-columns: 78px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.resource-row b {
+  font-size: 12px;
+}
+
+.resource-row span,
+.resource-row em {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.resource-row em {
+  color: var(--red-dark);
+  font-style: normal;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .agent-card div {

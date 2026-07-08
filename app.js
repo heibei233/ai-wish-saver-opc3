@@ -231,7 +231,7 @@ function renderState() {
   const payable = Math.max(0, 59.99 - appliedDiscount - shippingDiscount);
   const note = aiNotes[state.aiVariant % aiNotes.length];
 
-  setText("#dayText", `Day ${state.day}`);
+  setText("#dayText", `Day ${state.day}/7`);
   setText("#progressText", `${state.progress}%`);
   setText("#coinsText", state.coins);
   setText("#streakText", `第${state.streak}天`);
