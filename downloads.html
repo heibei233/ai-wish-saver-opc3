@@ -20,6 +20,11 @@
     a.card span { color: var(--muted); font-size: 14px; line-height: 1.45; }
     .primary { background: var(--red); color: #fff; border-color: var(--red); }
     .primary span { color: rgba(255,255,255,.86); }
+    .proof { margin-top: 18px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: #f8fafc; }
+    .proof strong { display: block; margin-bottom: 8px; font-size: 18px; }
+    .proof ol { margin: 0 0 10px 20px; padding: 0; color: var(--muted); line-height: 1.7; }
+    .proof a { color: var(--red); font-weight: 800; }
+    .proof code { padding: 2px 6px; border-radius: 6px; background: #fff; color: var(--ink); }
     .back { display: inline-flex; margin-top: 20px; color: var(--red); font-weight: 800; text-decoration: none; }
   </style>
 </head>
@@ -50,6 +55,15 @@
           <strong>下载 iOS 源码包</strong>
           <span>Mac + Xcode 可继续签名导出 IPA。</span>
         </a>
+      </div>
+      <div class="proof">
+        <strong>建议提交/展示顺序</strong>
+        <ol>
+          <li>先打开在线 App 原型，点击顶部 <code>评审</code> 自动跑完整链路。</li>
+          <li>再下载正式提交包（冲奖版），其中包含强制文档、Deck、MP4演示和多语言样张。</li>
+          <li>如需验证“真实App”，下载 Android APK；iOS 以 PWA 和 WKWebView 源码包作为可落地方案。</li>
+        </ol>
+        <p>在线原型地址：<a href="https://ai-wish-saver-opc3.onrender.com">https://ai-wish-saver-opc3.onrender.com</a></p>
       </div>
       <a class="back" href="./">返回在线 App</a>
     </section>

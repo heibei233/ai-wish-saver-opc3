@@ -1,4 +1,4 @@
-const CACHE_NAME = "ai-wish-saver-pwa-v3";
+const CACHE_NAME = "ai-wish-saver-pwa-v4";
 const APP_ASSETS = [
   "./",
   "./index.html",

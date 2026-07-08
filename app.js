@@ -74,6 +74,7 @@ let state = loadState();
 let deferredInstallPrompt = null;
 let wheelBusy = false;
 let autoDemoBusy = false;
+let judgeModeBusy = false;
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -84,6 +85,7 @@ function loadState() {
     const raw = localStorage.getItem(STORAGE_KEY);
     const parsed = raw ? JSON.parse(raw) : null;
     if (!parsed || parsed.version !== defaultState.version) return clone(defaultState);
+    if (!Array.isArray(parsed.feed)) parsed.feed = clone(defaultState.feed);
     return parsed;
   } catch {
     return clone(defaultState);
@@ -187,6 +189,18 @@ function renderTasks() {
   $("#taskList").innerHTML = html;
 }
 
+function renderFeed() {
+  const feed = $("#decisionFeed");
+  if (!feed) return;
+
+  feed.replaceChildren();
+  state.feed.forEach((message) => {
+    const row = document.createElement("span");
+    row.textContent = message;
+    feed.appendChild(row);
+  });
+}
+
 function renderJourney() {
   const count = completedCount();
   const steps = {
@@ -267,6 +281,7 @@ function renderState() {
 
   renderJourney();
   renderTasks();
+  renderFeed();
   saveState();
 }
 
@@ -424,10 +439,34 @@ async function runAutoDemo() {
   await wait(1200);
   showView("cart");
   await wait(500);
+  checkout();
+  await wait(550);
 
   $("#autoDemoBtn").disabled = false;
   $("#autoDemoBtn").textContent = "15秒演示";
   autoDemoBusy = false;
+}
+
+async function runJudgeMode() {
+  if (judgeModeBusy || autoDemoBusy) return;
+
+  judgeModeBusy = true;
+  $("#judgeModeBtn").disabled = true;
+  $("#judgeModeBtn").textContent = "跑中";
+  state = clone(defaultState);
+  localStorage.removeItem(STORAGE_KEY);
+  renderState();
+  toast("评审模式：自动跑任务、奖励、购物车和增长证明。");
+
+  await wait(520);
+  await runAutoDemo();
+  await wait(650);
+  showView("growth");
+  toast("评审模式完成：请查看增长证明和提交清单。");
+
+  $("#judgeModeBtn").disabled = false;
+  $("#judgeModeBtn").textContent = "评审";
+  judgeModeBusy = false;
 }
 
 function bindEvents() {
@@ -442,6 +481,7 @@ function bindEvents() {
   $all(".tab").forEach((tab) => tab.addEventListener("click", () => showView(tab.dataset.target)));
   $("#rerollBtn").addEventListener("click", rerollPlan);
   $("#autoDemoBtn").addEventListener("click", runAutoDemo);
+  $("#judgeModeBtn").addEventListener("click", runJudgeMode);
   $("#openChestBtn").addEventListener("click", openChest);
   $("#drawBtn").addEventListener("click", drawGacha);
   $("#redeemBtn").addEventListener("click", redeemCoupon);

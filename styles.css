@@ -149,12 +149,14 @@ button.green {
 .top-actions {
   flex: 0 0 auto;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }
 
 .icon-btn,
-.install-btn {
+.install-btn,
+.review-btn,
+.download-btn {
   width: 42px;
   min-height: 36px;
   padding: 0;
@@ -169,6 +171,30 @@ button.green {
 .install-btn {
   width: 52px;
   background: linear-gradient(135deg, var(--red), var(--amber));
+}
+
+.review-btn,
+.download-btn {
+  width: 48px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  box-shadow: 0 6px 14px rgba(17, 24, 39, 0.06);
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.review-btn {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
 }
 
 .view {
@@ -372,7 +398,9 @@ button.green {
 .agent-card,
 .probability-card,
 .chest-card,
-.wheel-card {
+.wheel-card,
+.decision-feed,
+.submission-checklist {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -646,6 +674,50 @@ button.green {
   background: rgba(204, 251, 241, 0.9);
   font-size: 11px;
   font-weight: 850;
+}
+
+.decision-feed {
+  margin-top: 12px;
+  padding: 14px;
+}
+
+.feed-tag {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #155e63;
+  background: #ccfbf1;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.feed-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.feed-list span {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: start;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.feed-list span::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(18, 183, 106, 0.13);
 }
 
 .section-head {
@@ -1128,6 +1200,53 @@ button.green {
   line-height: 1.35;
 }
 
+.submission-checklist {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px;
+}
+
+.submission-checklist h2 {
+  margin: 2px 0 4px;
+  font-size: 18px;
+}
+
+.check-row {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.check-row b {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.check-row span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.38;
+}
+
+.material-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 2px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--red), #ff7a45);
+  font-size: 13px;
+  font-weight: 950;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(255, 77, 61, 0.22);
+}
+
 .logic-card ul {
   margin: 9px 0 0 18px;
   padding: 0;
@@ -1263,6 +1382,12 @@ dialog p {
   .product-stage {
     opacity: 0.82;
     right: -38px;
+  }
+
+  .review-btn,
+  .download-btn {
+    width: 44px;
+    font-size: 11px;
   }
 
   .mission-simulator,
