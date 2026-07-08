@@ -9,7 +9,7 @@ git init
 git add .
 git commit -m "Deploy AI Wish Saver app"
 git branch -M main
-git remote add origin https://github.com/<你的用户名>/ai-wish-saver-opc3.git
+git remote add origin https://github.com/heibei233/ai-wish-saver-opc3.git
 git push -u origin main
 ```
 
