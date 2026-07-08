@@ -1,4 +1,4 @@
-const CACHE_NAME = "ai-wish-saver-pwa-v1";
+const CACHE_NAME = "ai-wish-saver-pwa-v3";
 const APP_ASSETS = [
   "./",
   "./index.html",
@@ -8,7 +8,8 @@ const APP_ASSETS = [
   "./icon.svg",
   "./apple-touch-icon.png",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./assets/earbuds-hero.png"
 ];
 
 self.addEventListener("install", (event) => {
