@@ -2,6 +2,8 @@
 
 这是 OPC3 赛题A项目的在线部署仓库目录。根路径打开后就是可运行 App 原型，`/downloads.html` 提供 APK、iOS 包和最终提交包下载。
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/heibei233/ai-wish-saver-opc3)
+
 ## GitHub 上传
 
 ```bash
